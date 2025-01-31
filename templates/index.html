@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/static/style.css">
+	</head>
+	<body>
+		<main>
+			<h1>RAG</h1>
+			<form method="POST" action="/query" id="queryForm">
+				<label for="query">Enter your query</label>
+				<input type="text" name="query" placeholder="Your query" value="{{ query if query else '' }}">
+				<button type="submit">Submit Query</button>
+			</form>
+			<div id="loading" class="hidden">
+				<p>Loading...</p>
+			</div>
+			<div id="response" class="hidden">
+				<div class="slot-container" id="response-container">
+					<h3>Response</h3>
+					<p id="response-text"></p>
+				</div>
+				<div class="slot-container" id="sources-container">
+					<h3>Sources</h3>
+					<div id="sources"></div>
+				</div>
+			</div>
+		</main>
+	</body>
+	<script src="/static/script.js"></script>
+</html>
