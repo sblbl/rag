@@ -41,21 +41,6 @@ def query_db(query_text: str):
 	prompt = prompt_template.format(context=context_text, question=query_text)
 	#response_text = model.invoke(query_text)
 	response_text = model.invoke(prompt)
-	"""
-	print("\nAI Response:")
-	print(response_text)
-	print("\n\n\n")
-	print("\nSources Used:")
-	for i, (doc, score) in enumerate(results, 1):
-		print(f"\nSource {i}:")
-		print(f"- ID: {doc.metadata.get('id', 'Unknown')}")
-		print(f"- Similarity Score: {score:.2f}")
-		print(f"- Content:")
-		print("---")
-		print(doc.page_content)
-		print("---")
-		print("\n")
-	"""
 	return {
 		"question": query_text,
 		"text": response_text,
@@ -88,6 +73,7 @@ def query_rag(query_text: str):
 			all_responses.append(response)
 
 		print(f"All responses: {all_responses}")
+		return all_responses
 	except Exception as e:
 		logging.error(f"Ollama error: {str(e)}")
 		raise

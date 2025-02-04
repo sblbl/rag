@@ -8,10 +8,12 @@
 	</head>
 	<body>
 		<main>
-			<h1>RAG</h1>
+			<h1>MINERVA</h1>
 			<form method="POST" action="/query" id="queryForm">
+				<label name="purpose">Purpose</label>
+				<input type="text" name="purpose" value="{{ purpose if purpose else 'Investigate the impact of AI on human rights' }}">
 				<label for="query">Enter your query</label>
-				<input type="text" name="query" placeholder="Your query" value="{{ query if query else '' }}">
+				<input type="text" name="query" value="{{ query if query else 'What is the relationship between AI and gender equality?' }}">
 				<button type="submit">Submit Query</button>
 			</form>
 			<div id="loading" class="hidden">

@@ -47,17 +47,12 @@ async def query(request: Request, query: str = Form(...)):
 	try:
 		response = query_rag(query)
 		return JSONResponse({
-			"response": response["text"],
-			"sources": response["sources"],
-			"query": query
+			"responses": response
 		})
 	except Exception as e:
 		logger.error(f"Error querying RAG: {e}")
-		response = {"text": "An error occurred while processing your request.", "sources": []}
-		return templates.TemplateResponse(
-			"index.html", 
-			{"request": request, "response": response["text"], "sources": response["sources"], "query": query}
-		)
+		response = {"error": f"An error occurred while processing your request: {e}"}
+		return JSONResponse(response)
 
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request, exc):
